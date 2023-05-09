@@ -32,10 +32,17 @@ function Counter({ title, initValue = 10 }: CounterProps) {
     // count = count + 1;
     setCount(count + 1);
   }
+
+  // 인라인 스타일 - 객체로 들어가기 때문에 {{}} 중괄호 두번 사용
+  const h1Style = {
+    fontSize: 5,
+    color: "gray",
+    fontFamily: "궁서체",
+  };
   return (
-    <div>
+    <div className='outline'>
       {/* {}를 해줘야 title의 데이터를 가지고 온다. 여기서 props는 type을 알려줌 */}
-      <h1>{title}</h1>
+      <h1 style={h1Style}>{title}</h1>
       {/* 타입스크립트에서 제공하는 onClick */}
       <button onClick={up}>+</button> {count}
     </div>
@@ -117,15 +124,7 @@ type countType = {
 };
 function Counter4() {
   const [count, setCount] = useState<countType[]>([]); //state의 타입을 지정해줘야함
-  // debugger;
-  console.log("count", count);
   const [step, setStep] = useState(1);
-
-  let total = 0;
-  for (let i = 0; i < count.length; i++) {
-    total = total + count[i].step;
-  }
-
   return (
     <>
       <h1>Counter4</h1>
@@ -145,13 +144,30 @@ function Counter4() {
       >
         +
       </button>
-      {total}
-      <ol>
+      <table>
+        <tr>
+          <td>총계</td>
+          <td>
+            {/* for문을 reduce로 변경 */}
+            {count.reduce((누적된값, 현재순번의원소) => {
+              console.log(누적된값, 현재순번의원소);
+              return 누적된값 + 현재순번의원소.step;
+            }, 0)}
+          </td>
+        </tr>
+        <tr>
+          <td>time</td>
+          <td>step</td>
+        </tr>
         {count.map((value, index) => {
-          // debugger;
-          return <li key={index}>{value.time}</li>;
+          return (
+            <tr key={index}>
+              <td>{value.time}</td>
+              <td>{value.step}</td>
+            </tr>
+          );
         })}
-      </ol>
+      </table>
     </>
   );
 }
