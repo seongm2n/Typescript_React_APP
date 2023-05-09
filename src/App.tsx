@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import "./App.css";
-import { link } from "fs";
+import style from "./App.module.css";
+console.log(style.layout);
 
 type CounterProps = {
   title: string;
@@ -40,7 +42,7 @@ function Counter({ title, initValue = 10 }: CounterProps) {
     fontFamily: "궁서체",
   };
   return (
-    <div className='outline'>
+    <div className="outline">
       {/* {}를 해줘야 title의 데이터를 가지고 온다. 여기서 props는 type을 알려줌 */}
       <h1 style={h1Style}>{title}</h1>
       {/* 타입스크립트에서 제공하는 onClick */}
@@ -82,7 +84,7 @@ function Counter2() {
     setTimes(newTimes);
   }
   return (
-    <>
+    <div className={style.layout}>
       <h1>Counter2</h1>
       <button onClick={up}>+</button>
       <ol>
@@ -91,7 +93,7 @@ function Counter2() {
           return <li key={index}>{value}</li>;
         })}
       </ol>
-    </>
+    </div>
   );
 }
 //input과 같은 form 태그와 state를 연동하고 react에서 사용하는 방법

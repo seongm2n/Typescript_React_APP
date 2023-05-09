@@ -1,0 +1,11 @@
+.layout {
+  border: 20px solid blue;
+}
+
+.layout h1 {
+  color: blue;
+}
+
+.outline{
+  border: 30px solid green;
+}
