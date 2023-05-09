@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import style from "./App.module.css";
 import Counter, { CounterProps } from "./Counter";
+import { Container } from "@mui/material";
 
 function getCurrentTime() {
   const now = new Date();
@@ -129,13 +130,16 @@ function Counter4() {
 
 function App() {
   return (
-    <div>
-      {/* 문자열이 아닌 다른 데이터 타입음 {}로 써야함*/}
-      <Counter title="불면증 카운터" initValue={10} />
-      <Counter2 />
-      <Counter3 />
-      <Counter4 />
-    </div>
+    //mui 활용
+    <Container maxWidth="sm">
+      <div>
+        {/* 문자열이 아닌 다른 데이터 타입음 {}로 써야함*/}
+        <Counter title="불면증 카운터" initValue={10} />
+        <Counter2 />
+        <Counter3 />
+        <Counter4 />
+      </div>
+    </Container>
   );
 }
 
