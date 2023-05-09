@@ -102,15 +102,56 @@ function Counter3() {
         }}
       />
       <button
-        onClick={() =>
-          setCount(
-            (count === undefined ? 0 : count) + step
-          )
-        }
+        onClick={() => setCount((count === undefined ? 0 : count) + step)}
       >
         +
       </button>
       {count}
+    </>
+  );
+}
+
+type countType = {
+  time: string;
+  step: number;
+};
+function Counter4() {
+  const [count, setCount] = useState<countType[]>([]); //state의 타입을 지정해줘야함
+  // debugger;
+  console.log("count", count);
+  const [step, setStep] = useState(1);
+
+  let total = 0;
+  for (let i = 0; i < count.length; i++) {
+    total = total + count[i].step;
+  }
+
+  return (
+    <>
+      <h1>Counter4</h1>
+      <input
+        type="number"
+        value={step}
+        onChange={(event) => {
+          setStep(Number(event.target.value));
+        }}
+      />
+      <button
+        onClick={() => {
+          const newCount = [...count];
+          newCount.push({ time: getCurrentTime(), step: step });
+          setCount(newCount);
+        }}
+      >
+        +
+      </button>
+      {total}
+      <ol>
+        {count.map((value, index) => {
+          // debugger;
+          return <li key={index}>{value.time}</li>;
+        })}
+      </ol>
     </>
   );
 }
@@ -122,6 +163,7 @@ function App() {
       <Counter title="불면증 카운터" initValue={10} />
       <Counter2 />
       <Counter3 />
+      <Counter4 />
     </div>
   );
 }
