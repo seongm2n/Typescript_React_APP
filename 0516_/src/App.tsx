@@ -39,7 +39,12 @@ function Counter1() {
 				}}
 			/>
 			<button
-				style={{ border: 'none', background: 'none' }}
+				style={{
+					border: 'none',
+					background: 'none',
+					fontSize: 20,
+					cursor: 'pointer',
+				}}
 				onClick={() => {
 					setCount((count === undefined ? 0 : count) + step);
 				}}
