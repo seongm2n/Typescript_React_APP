@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 //useEffect의 첫번째 파라미터 -> 콜백함수
@@ -36,8 +37,20 @@ export const Counter4UseEffect = () => {
 		<div className='layout'>
 			<h1>useEffect, setInterval</h1>
 			{count}
-			<button onClick={startCount}>Start</button>
-			<button onClick={stopCount}>Stop</button>
+			<ButtonGroup style={{ margin: 10 }}>
+				<Button
+					variant='contained'
+					onClick={startCount}
+				>
+					Start
+				</Button>
+				<Button
+					variant='contained'
+					onClick={stopCount}
+				>
+					Stop
+				</Button>
+			</ButtonGroup>
 		</div>
 	);
 };

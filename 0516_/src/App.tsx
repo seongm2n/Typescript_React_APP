@@ -1,31 +1,59 @@
 import React from 'react';
 import { Counter4UseEffect } from './Counter4UseEffect';
 import { Counter1 } from './Counter1';
-import { Container, Grid } from '@mui/material';
+import {
+	Button,
+	Container,
+	Grid,
+	ThemeProvider,
+	createTheme,
+} from '@mui/material';
+import { grey, red } from '@mui/material/colors';
 
+const darkTheme = createTheme({
+	palette: {
+		primary: grey,
+	},
+});
+const globalTheme = createTheme({
+	spacing: 8,
+	palette: {
+		primary: red,
+	},
+});
 function App() {
 	return (
-		<Container>
-			<Grid
-				container
-				spacing={2}
-			>
-				<Grid
-					item
-					xs={12}
-					sm={6}
+		<ThemeProvider theme={globalTheme}>
+			<Container>
+				<Button
+					variant='contained'
+					style={{ marginBottom: 10 }}
 				>
-					<Counter4UseEffect />
-				</Grid>
+					Login
+				</Button>
 				<Grid
-					item
-					xs={12}
-					sm={6}
+					container
+					spacing={2}
 				>
-					<Counter1 />
+					<Grid
+						item
+						xs={12}
+						sm={6}
+					>
+						<ThemeProvider theme={darkTheme}>
+							<Counter4UseEffect />
+						</ThemeProvider>
+					</Grid>
+					<Grid
+						item
+						xs={12}
+						sm={6}
+					>
+						<Counter1 />
+					</Grid>
 				</Grid>
-			</Grid>
-		</Container>
+			</Container>
+		</ThemeProvider>
 	);
 }
 
