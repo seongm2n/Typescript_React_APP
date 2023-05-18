@@ -1,6 +1,7 @@
 import React from 'react';
 import { Counter4UseEffect } from './Counter4UseEffect';
 import { Counter1 } from './Counter1';
+import { ContextAPI } from './ContextAPI';
 import {
 	Button,
 	Container,
@@ -9,6 +10,7 @@ import {
 	createTheme,
 } from '@mui/material';
 import { grey, red } from '@mui/material/colors';
+import { UseReduce } from './UseReduce';
 
 const darkTheme = createTheme({
 	palette: {
@@ -40,6 +42,22 @@ function App() {
 						xs={12}
 						sm={6}
 					>
+						<UseReduce />
+					</Grid>
+					<Grid
+						item
+						xs={12}
+						sm={6}
+					>
+						<ThemeProvider theme={darkTheme}>
+							<ContextAPI />
+						</ThemeProvider>
+					</Grid>
+					<Grid
+						item
+						xs={12}
+						sm={6}
+					>
 						<ThemeProvider theme={darkTheme}>
 							<Counter4UseEffect />
 						</ThemeProvider>
@@ -56,5 +74,4 @@ function App() {
 		</ThemeProvider>
 	);
 }
-
 export default App;
