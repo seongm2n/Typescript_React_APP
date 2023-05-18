@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
 
-function Counter1() {
-	const [count, setCount] = useState(10);
+type Counter1Props = {
+	value: number;
+};
+function Counter1({ value }: Counter1Props) {
 	return (
 		<div>
 			<h1>Counter</h1>
-			<button
-				onClick={() => {
-					setCount(count + 1);
-				}}
-			>
-				+
-			</button>
-			{count}
+			<button onClick={() => {}}>+</button>
+			{value}
 		</div>
 	);
 }
-function Counter2() {
-	const count = 10;
-	return <div>{count}</div>;
+
+type Counter2Props = {
+	value: number;
+};
+function Counter2({ value }: Counter2Props) {
+	return <div>{value}</div>;
 }
+
 function App() {
+	const [count, setCount] = useState(10);
 	return (
 		<div>
-			<Counter1></Counter1>
-			<Counter2></Counter2>
+			<Counter1 value={count}></Counter1>
+			<Counter2 value={count}></Counter2>
 		</div>
 	);
 }
