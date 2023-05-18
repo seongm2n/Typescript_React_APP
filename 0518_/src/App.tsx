@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 
 type Counter1Props = {
 	value: number;
+	onChange: (value: number) => void;
 };
-function Counter1({ value }: Counter1Props) {
+function Counter1({ value, onChange }: Counter1Props) {
 	return (
 		<div>
 			<h1>Counter</h1>
-			<button onClick={() => {}}>+</button>
+			<button
+				onClick={() => {
+					onChange(value);
+				}}
+			>
+				+
+			</button>
 			{value}
 		</div>
 	);
@@ -24,7 +31,12 @@ function App() {
 	const [count, setCount] = useState(10);
 	return (
 		<div>
-			<Counter1 value={count}></Counter1>
+			<Counter1
+				value={count}
+				onChange={(value) => {
+					setCount(value + 1);
+				}}
+			></Counter1>
 			<Counter2 value={count}></Counter2>
 		</div>
 	);
