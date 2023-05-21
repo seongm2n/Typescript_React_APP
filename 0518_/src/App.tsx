@@ -1,44 +1,67 @@
+import { PayloadAction, configureStore, createSlice } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
-
-type Counter1Props = {
-	value: number;
-	onChange: (value: number) => void;
+import { Provider, useDispatch, useSelector } from 'react-redux';
+const counterInitialState = {
+	value: 11,
+	step: 2,
 };
-function Counter1({ value, onChange }: Counter1Props) {
+const counterReducers = {
+	UP: (state: any) => {
+		state.value = state.value + 1;
+	},
+	STEP: (state: any, action: PayloadAction<number>) => {
+		state.step = action.payload;
+	},
+};
+const counterSlice = createSlice({
+	name: 'counter',
+	initialState: counterInitialState,
+	reducers: counterReducers,
+});
+const store = configureStore({
+	reducer: {
+		counter: counterSlice.reducer,
+	},
+});
+
+function Counter1() {
+	const count = useSelector((state: any) => state.counter.value);
+	const step = useSelector((state: any) => state.counter.step);
+	const dispatch = useDispatch();
 	return (
 		<div>
 			<h1>Counter</h1>
+			<input
+				type='number'
+				value={step}
+				onChange={(evt) => {
+					const step = Number(evt.target.value);
+					dispatch(counterSlice.actions.STEP(step));
+				}}
+			/>
 			<button
 				onClick={() => {
-					onChange(value);
+					dispatch(counterSlice.actions.UP());
 				}}
 			>
 				+
 			</button>
-			{value}
+			{count}
 		</div>
 	);
 }
-
-type Counter2Props = {
-	value: number;
-};
-function Counter2({ value }: Counter2Props) {
-	return <div>{value}</div>;
+function Counter2() {
+	const count = useSelector((state: any) => state.counter.value);
+	return <div>{count}</div>;
 }
-
 function App() {
-	const [count, setCount] = useState(10);
 	return (
-		<div>
-			<Counter1
-				value={count}
-				onChange={(value) => {
-					setCount(value + 1);
-				}}
-			></Counter1>
-			<Counter2 value={count}></Counter2>
-		</div>
+		<Provider store={store}>
+			<div>
+				<Counter1></Counter1>
+				<Counter2></Counter2>
+			</div>
+		</Provider>
 	);
 }
 
