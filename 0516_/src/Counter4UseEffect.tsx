@@ -37,7 +37,7 @@ export const Counter4UseEffect = () => {
 		<div className='layout'>
 			<h1>useEffect, setInterval</h1>
 			{count}
-			<ButtonGroup style={{ margin: 10 }}>
+			<ButtonGroup style={{ marginLeft: 10 }}>
 				<Button
 					variant='contained'
 					onClick={startCount}

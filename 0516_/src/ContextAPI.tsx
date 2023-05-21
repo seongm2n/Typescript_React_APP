@@ -1,6 +1,7 @@
 import React from 'react';
 import { ContextAPISub } from './ContextAPISub';
 import { MyThemeProvider } from './initTheme';
+import { ButtonGroup, Button } from '@mui/material';
 
 export function ContextAPI() {
 	return (
@@ -13,7 +14,9 @@ export function ContextAPI() {
 		>
 			<div className='layout'>
 				<h1>Context api</h1>
-				<button>+</button>
+				<ButtonGroup>
+					<Button variant='contained'>+</Button>
+				</ButtonGroup>
 				<ContextAPISub></ContextAPISub>
 			</div>
 		</MyThemeProvider>
